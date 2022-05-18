@@ -7,34 +7,28 @@
 
 using namespace std;
 
-/**
- * @brief  This is my implementation for Node (that can be used in a Tree or as Tree on it's on).
- *         The class is template so it will work for every type.
- * @tparam T - type of the object that this node will contain.
- */
-template<typename T>
+
 class Node{
     private:
-    T n_data;
+    string n_data;
     Node * pFather;
-    vector<Node<T> *> n_childrens; // This Vector contains Pointers to all the childrens
+    vector<Node *> n_childrens; // This Vector contains Pointers to all the childrens
     size_t size;
 
     public:
-    using valuetype = T;
+    using valuetype = string;
 
     public:
     /**
      * @brief Construct a new Node object
      *       1. defult Constructor.
-     *       2. argument Constructor - data (type T)
+     *       2. argument Constructor - data (type string)
      */
     Node(){
         this->pFather = NULL;
-        this->data = NULL;
         this->size = 1;
         }
-    Node(T data){
+    Node(string data){
         this->pFather = NULL;
         this->n_data = data;
         this->size = 1;
@@ -44,12 +38,12 @@ class Node{
      * @brief Get the Data object
      * @return T - The data stored in the Node (Type T).
      */
-    T getData(){ return this->n_data;}
+    string getData(){ return this->n_data;}
     /**
      * @brief Set the Data object
      * @param data 
      */
-    void setData(T data){this->n_data = data;}
+    void setData(string data){this->n_data = data;}
     /**
      * @brief Get the Size Of the Tree Starting from this Node.
      * @return size_t  - size;
@@ -89,10 +83,10 @@ class Node{
      * @param data - The data we want to receive --> if the data doesn't exist, Return NULL.
      * @return Node<T>*  - Pointer to Node;
      */
-    Node<T> *get(T data){
-        Node<T> * ans = NULL;
-        Node<T> * ptr = this;
-        queue< Node<T>* > node_q;
+    Node *get(string data){
+        Node * ans = NULL;
+        Node * ptr = this;
+        queue< Node* > node_q;
         node_q.emplace(ptr);
         while(!node_q.empty()){
             ptr = node_q.front();
@@ -101,7 +95,7 @@ class Node{
                 ans = ptr;
                 break;
             }
-            vector<Node<T> *> tmp = ptr->getSons();
+            vector<Node *> tmp = ptr->getSons();
             for(size_t i=0; i<tmp.size(); i++){
                 node_q.emplace(tmp[i]);
             }
@@ -115,8 +109,8 @@ class Node{
      * @return true - there is a node in this sub tree that contains this data (Get it with the get(T data)).
      * @return false - there is no node in this Sub-Tree that contains this data.
      */
-    bool contains(T data){
-        Node<T> *ptr = this->get(data);
+    bool contains(string data){
+        Node *ptr = this->get(data);
         if(ptr == NULL){
             return false;
         }
@@ -129,7 +123,7 @@ class Node{
      */
     int level(){
         int count = 0;
-        Node<T> *ptr = (this);
+        Node *ptr = (this);
         while(ptr->pFather != NULL){
             ptr = ptr->pFather;
             count++;
@@ -137,17 +131,17 @@ class Node{
         return count;
     }
 
-    vector<Node<T> *> getSons(){return this->n_childrens;}
+    vector<Node *> getSons(){return this->n_childrens;}
     
     string to_string(){
-        queue<Node<T> *> node_q;
+        queue<Node *> node_q;
         string str = "| ";
-        Node<T> *ptr = this;
+        Node *ptr = this;
         node_q.emplace(ptr);
         while(! node_q.empty()){
             ptr = node_q.front();
             node_q.pop();
-            vector<Node<T> *> tmp = ptr->getSons();
+            vector<Node *> tmp = ptr->getSons();
             for(size_t i=0; i<tmp.size(); i++){
                 node_q.emplace(tmp[i]);
             }
@@ -162,4 +156,6 @@ class Node{
         os << data;
         return os;
     }
+
+
 };

@@ -9,15 +9,14 @@ using namespace std;
 
 using namespace ariel;
 
-OrgChart::OrgChart(){
-    this->root = NULL;
-}
+OrgChart::OrgChart(){}
 
 OrgChart::~OrgChart(){}
 
 OrgChart& OrgChart::add_root(const string& str){
-    // Node<string> root(str);
-    // this->root = &root;
+    // string s = str;
+    // Node tmp(s);
+    // this->root = &tmp;
     return *this;
 }
 
@@ -26,24 +25,27 @@ OrgChart& OrgChart::add_sub(string manager,string employee){
     //     string str = "The name" + manager + " doesn't exist!";
     //     throw invalid_argument(str);
     // }
-    // Node<string> *ptr = this->root->get(manager);
-    // Node<string> emp(employee);
+    // cout << "add_sub 1\n";
+    // Node *ptr = this->root->get(manager);
+    // cout << "add_sub 2 , menager = "<< *ptr<< endl;
+    // Node emp(employee);
     // ptr->addSon( &emp);
     return *this;
 }
 
-Node<string> *OrgChart::getRoot() const{
+Node *OrgChart::getRoot() const{
     return this->root;
 }
 
-string OrgChart::to_string(){
-    Node<string> *ptr = this->root;
-    string str = ptr->to_string();
-    return str;
-}
+// string OrgChart::to_string(){
+//     Node  *ptr = this->root;
+//     string str = ptr->to_string();
+//     return str;
+// }
 
 ostream& ariel::operator<<(ostream &o, OrgChart &chart){
-    o << "";
+    // Node ptr = (Node *) (chart.getRoot());
+    // o << ptr ;
     // o << chart.to_string();
     return o;
 }
@@ -51,11 +53,13 @@ ostream& ariel::operator<<(ostream &o, OrgChart &chart){
 
 //----Implementing Level Order Iterator----//
 
-OrgChart::level_iterator::level_iterator(){}
+// OrgChart::level_iterator::level_iterator(){}
 
-bool ariel::OrgChart::level_iterator::operator==(level_iterator& it){
-    return true;
-}
-ostream& ariel::operator<<(ostream &o,const OrgChart::level_iterator &chart){
-    return o;
-}
+// bool ariel::OrgChart::level_iterator::operator==(level_iterator& it){
+//     return true;
+// }
+
+// ostream& ariel::operator<<(ostream &o,const OrgChart::iterator &chart){
+//     // o<<"HEllo Broooo";
+//     return o;
+// }
