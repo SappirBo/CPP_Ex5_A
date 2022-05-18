@@ -91,3 +91,25 @@ TEST_CASE("Test 3 - Reverse Order")
         CHECK_EQ(check[counter++] , i->curr->getData());
     }
 };
+
+TEST_CASE("Multi Roots")
+{
+    OrgChart org;
+    org.add_root("CEO1");
+    for(auto i=org.begin_reverse_order(); i != org.reverse_order(); ++i){
+        CHECK_EQ("CEO1" , i->curr->getData());
+    }
+    org.add_root("CEO2");
+    for(auto i=org.begin_reverse_order(); i != org.reverse_order(); ++i){
+        CHECK_EQ("CEO2" , i->curr->getData());
+    }
+    org.add_root("CEO3");
+    for(auto i=org.begin_reverse_order(); i != org.reverse_order(); ++i){
+        CHECK_EQ("CEO3" , i->curr->getData());
+    }
+    org.add_root("CEO4");
+    for(auto i=org.begin_reverse_order(); i != org.reverse_order(); ++i){
+        CHECK_EQ("CEO4" , i->curr->getData());
+    }
+
+}

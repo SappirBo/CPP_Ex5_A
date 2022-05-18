@@ -10,13 +10,18 @@ namespace ariel{
 
     class OrgChart
     {
+        /**
+         * @brief dummy Implementation for Iterator
+         *          Only For the Test (Ex5_1). 
+         */
         class iterator{
             public:
-                Node *curr;
-                size_t it_Size;
+                Node *curr; // Current Node in the tree.
+                size_t it_Size; // Size of the Tree
 
-                iterator(){}
+                iterator(){} // Dummy Construcur.
                 size_t size(){return 0;}
+                // Not the REAL Functions.
                 friend bool operator!=(const iterator& it1,const iterator& it2){return false;}
                 bool operator==(iterator& it){return false;}
                 iterator operator++(){return *this;}
